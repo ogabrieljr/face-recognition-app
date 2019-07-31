@@ -27,16 +27,7 @@ class App extends Component {
 		const image = document.getElementById("inputImage");
 		const width = Number(image.width);
 		const height = Number(image.height);
-		return {
-			leftCol: clarifaiFace.left_col * width,
-			topRow: clarifaiFace.top_row * height,
-			rightCol: width - clarifaiFace.right_col * width,
-			bottomRow: height - clarifaiFace.bottom_row * height
-		};
-	};
-	display = box => {
-		console.log(box)
-		this.setState({ box });
+		console.log(width, height);
 	};
 
 	submit = () => {
@@ -44,7 +35,7 @@ class App extends Component {
 		app.models
 			.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
 			.then(response => {
-				this.display(this.faceLocation(response));
+				this.faceLocation(response);
 			})
 			.catch(err => console.log(err));
 	};
