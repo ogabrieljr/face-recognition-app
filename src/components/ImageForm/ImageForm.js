@@ -1,15 +1,14 @@
-import React, { Component } from "react";
 
-export default class ImageForm extends Component {
-	render() {
-		return (
-			<div className="tc">
-				<p>faces</p>
-				<div>
-					<input />
-					<button>btn</button>
-				</div>
+import React from "react";
+
+export default function ImageForm({change, submit}) {
+	return (
+		<div className="tc">
+			<p>faces</p>
+			<div>
+				<input onChange={change} />
+				<button onClick={submit}>btn</button>
 			</div>
-		);
-	}
+		</div>
+	);
 }
