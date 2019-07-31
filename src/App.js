@@ -16,7 +16,8 @@ class App extends Component {
 		super(props);
 		this.state = {
 			input: "",
-			image: ""
+			image: "",
+			box: {}
 		};
 	}
 	change = e => this.setState({ input: e.target.value });
@@ -35,7 +36,7 @@ class App extends Component {
 		};
 	};
 	display = box => {
-		console.log(box)
+		console.log(box);
 		this.setState({ box });
 	};
 
@@ -55,7 +56,7 @@ class App extends Component {
 				<Logo />
 				<Rank />
 				<ImageForm change={this.change} submit={this.submit} />
-				<Recognition image={this.state.image} />
+				<Recognition box={this.state.box} image={this.state.image} />
 			</div>
 		);
 	}
