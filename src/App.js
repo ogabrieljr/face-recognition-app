@@ -20,16 +20,33 @@ class App extends Component {
 		};
 	}
 	change = e => this.setState({ input: e.target.value });
+
+	faceLocation = data => {
+		const clarifaiFace =
+			data.outputs[0].data.regions[0].region_info.bounding_box;
+		const image = document.getElementById("inputImage");
+		const width = Number(image.width);
+		const height = Number(image.height);
+		return {
+			leftCol: clarifaiFace.left_col * width,
+			topRow: clarifaiFace.top_row * height,
+			rightCol: width - clarifaiFace.right_col * width,
+			bottomRow: height - clarifaiFace.bottom_row * height
+		};
+	};
+	display = box => {
+		console.log(box)
+		this.setState({ box });
+	};
+
 	submit = () => {
 		this.setState({ image: this.state.input });
-		app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input).then(
-			function(response) {
-				console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
-			},
-			function(err) {
-				// there was an error
-			}
-		);
+		app.models
+			.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
+			.then(response => {
+				this.display(this.faceLocation(response));
+			})
+			.catch(err => console.log(err));
 	};
 	render() {
 		return (

@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
-export default function Recognition({image}) {
-  return (
-    <div>
-      <img alt="" src={image}></img>
-    </div>
-  )
+export default function Recognition({ image }) {
+	return (
+		<div>
+			<img id="inputImage" alt="" src={image} width="500px" height="auto" />
+		</div>
+	);
 }
