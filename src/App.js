@@ -6,6 +6,7 @@ import ImageForm from "./components/ImageForm/ImageForm";
 import Rank from "./components/Rank/Rank";
 import Clarifai from "clarifai";
 import Recognition from "./components/Recognition/Recognition";
+import Signin from "./components/Signin/Signin";
 
 const app = new Clarifai.App({
 	apiKey: "de6c435c4bc94e4394563714d9928850"
@@ -17,7 +18,8 @@ class App extends Component {
 		this.state = {
 			input: "",
 			image: "",
-			box: {}
+			box: {},
+			route: "signin"
 		};
 	}
 	change = e => this.setState({ input: e.target.value });
@@ -49,14 +51,24 @@ class App extends Component {
 			})
 			.catch(err => console.log(err));
 	};
+	onRouteChange = route => {
+		this.setState({ route: route });
+	};
+
 	render() {
 		return (
 			<div>
-				<Navigation />
-				<Logo />
-				<Rank />
-				<ImageForm change={this.change} submit={this.submit} />
-				<Recognition box={this.state.box} image={this.state.image} />
+				<Navigation onRouteChange={this.onRouteChange} />
+				{this.state.route === "signin" ? (
+					<Signin onRouteChange={this.onRouteChange} />
+				) : (
+					<div>
+						<Logo />
+						<Rank />
+						<ImageForm change={this.change} submit={this.submit} />
+						<Recognition box={this.state.box} image={this.state.image} />
+					</div>
+				)}
 			</div>
 		);
 	}
