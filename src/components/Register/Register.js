@@ -1,12 +1,23 @@
 import React from "react";
 
-export default function Signin({ onRouteChange }) {
+export default function Register({ onRouteChange }) {
 	return (
 		<div>
 			<main class="pa4 black-80">
 				<form class="measure center">
 					<fieldset id="sign_up" class="ba b--transparent ph0 mh0">
-						<legend class="f4 fw6 ph0 mh0">Sign In</legend>
+						<legend class="f4 fw6 ph0 mh0">Register</legend>
+						<div class="mt3">
+							<label class="db fw6 lh-copy f6" for="name">
+								Name
+							</label>
+							<input
+								class="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+								type="name"
+								name="name"
+								id="name"
+							/>
+						</div>
 						<div class="mt3">
 							<label class="db fw6 lh-copy f6" for="email-address">
 								Email
@@ -42,15 +53,8 @@ export default function Signin({ onRouteChange }) {
 						/>
 					</div>
 					<div class="lh-copy mt3">
-						<p
-							onClick={() => onRouteChange("register")}
-							class="f6 link dim black db pointer"
-						>
-							Sign up
-						</p>
-						<a href="#0" class="f6 link dim black db">
-							Forgot your password?
-						</a>
+						
+					
 					</div>
 				</form>
 			</main>

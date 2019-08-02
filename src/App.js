@@ -7,6 +7,7 @@ import Rank from "./components/Rank/Rank";
 import Clarifai from "clarifai";
 import Recognition from "./components/Recognition/Recognition";
 import Signin from "./components/Signin/Signin";
+import Register from "./components/Register/Register";
 
 const app = new Clarifai.App({
 	apiKey: "de6c435c4bc94e4394563714d9928850"
@@ -59,15 +60,17 @@ class App extends Component {
 		return (
 			<div>
 				<Navigation onRouteChange={this.onRouteChange} />
-				{this.state.route === "signin" ? (
-					<Signin onRouteChange={this.onRouteChange} />
-				) : (
+				{this.state.route === "home" ? (
 					<div>
 						<Logo />
 						<Rank />
 						<ImageForm change={this.change} submit={this.submit} />
 						<Recognition box={this.state.box} image={this.state.image} />
 					</div>
+				) : this.state.route === "signin" ? (
+					<Signin onRouteChange={this.onRouteChange} />
+				) : (
+					<Register onRouteChange={this.onRouteChange} />
 				)}
 			</div>
 		);
