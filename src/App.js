@@ -20,7 +20,8 @@ class App extends Component {
 			input: "",
 			image: "",
 			box: {},
-			route: "signin"
+			route: "signin",
+			isSignedIn:false
 		};
 	}
 	change = e => this.setState({ input: e.target.value });
@@ -53,6 +54,11 @@ class App extends Component {
 			.catch(err => console.log(err));
 	};
 	onRouteChange = route => {
+		if(route === "signout"){
+			this.setState({isSignedIn:false})
+		} else if (route === "home") {
+			this.setState({isSignedIn: true})
+		}
 		this.setState({ route: route });
 	};
 
