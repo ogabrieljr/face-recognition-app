@@ -5,15 +5,14 @@ export default class Signin extends Component {
 		super(props);
 		this.state = {
 			signinEmail: "",
-			SigninPassword: ""
+			signinPassword: ""
 		};
 	}
-
 	onEmailChange = event => {
 		this.setState({ signinEmail: event.target.value });
 	};
 	onPasswordChange = event => {
-		this.setState({ SigninPassword: event.target.value });
+		this.setState({ signinPassword: event.target.value });
 	};
 	onSubmit = () => {
 		fetch("http://localhost:3000/signin", {
@@ -21,7 +20,7 @@ export default class Signin extends Component {
 			headers: { "Content-type": "application/json" },
 			body: JSON.stringify({
 				email: this.state.signinEmail,
-				password: this.state.SigninPassword
+				password: this.state.signinPassword
 			})
 		})
 			.then(res => res.json())
@@ -31,13 +30,12 @@ export default class Signin extends Component {
 				}
 			});
 	};
-
 	render() {
 		const { onRouteChange } = this.props;
 		return (
 			<div>
 				<main className="pa4 black-80">
-					<form className="measure center">
+					<div className="measure center">
 						<fieldset id="sign_up" className="ba b--transparent ph0 mh0">
 							<legend className="f4 fw6 ph0 mh0">Sign In</legend>
 							<div className="mt3">
@@ -86,7 +84,7 @@ export default class Signin extends Component {
 								Forgot your password?
 							</a>
 						</div>
-					</form>
+					</div>
 				</main>
 			</div>
 		);
