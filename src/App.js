@@ -24,6 +24,14 @@ class App extends Component {
 			isSignedIn:false
 		};
 	}
+
+// componentDidMount() {
+// 	fetch("http://localhost:3000/")
+// 	.then(res => res.json())
+// 	.then(console.log)
+// }
+
+
 	change = e => this.setState({ input: e.target.value });
 
 	faceLocation = data => {
@@ -65,7 +73,7 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<Navigation onRouteChange={this.onRouteChange} />
+				<Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange} />
 				{this.state.route === "home" ? (
 					<div>
 						<Logo />

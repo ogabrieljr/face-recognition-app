@@ -6,7 +6,7 @@ export default function Navigation({ onRouteChange, isSignedIn }) {
 			<div style={{ display: "flex", justifyContent: "flex-end" }}>
 				<nav>
 					<p
-						onClick={() => onRouteChange("signin")}
+						onClick={() => onRouteChange("signout")}
 						className="f3 link dim black underline pa3 pointer"
 					>
 						Sign out
