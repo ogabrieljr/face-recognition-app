@@ -21,16 +21,34 @@ class App extends Component {
 			image: "",
 			box: {},
 			route: "signin",
-			isSignedIn:false
+			isSignedIn: false,
+			user: {
+				id: "",
+				name: "",
+				email: "",
+				entries: 0,
+				joined: ""
+			}
 		};
 	}
 
-// componentDidMount() {
-// 	fetch("http://localhost:3000/")
-// 	.then(res => res.json())
-// 	.then(console.log)
-// }
+	// componentDidMount() {
+	// 	fetch("http://localhost:3000/")
+	// 	.then(res => res.json())
+	// 	.then(console.log)
+	// }
 
+	loadUser = data => {
+		this.setState({
+			user: {
+				id: data.id,
+				name: data.name,
+				email: data.email,
+				entries: data.entries,
+				joined: data.joined
+			}
+		});
+	};
 
 	change = e => this.setState({ input: e.target.value });
 
@@ -62,10 +80,10 @@ class App extends Component {
 			.catch(err => console.log(err));
 	};
 	onRouteChange = route => {
-		if(route === "signout"){
-			this.setState({isSignedIn:false})
+		if (route === "signout") {
+			this.setState({ isSignedIn: false });
 		} else if (route === "home") {
-			this.setState({isSignedIn: true})
+			this.setState({ isSignedIn: true });
 		}
 		this.setState({ route: route });
 	};
@@ -73,7 +91,10 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange} />
+				<Navigation
+					isSignedIn={this.state.isSignedIn}
+					onRouteChange={this.onRouteChange}
+				/>
 				{this.state.route === "home" ? (
 					<div>
 						<Logo />
@@ -84,7 +105,10 @@ class App extends Component {
 				) : this.state.route === "signin" ? (
 					<Signin onRouteChange={this.onRouteChange} />
 				) : (
-					<Register onRouteChange={this.onRouteChange} />
+					<Register
+						loadUser={this.loadUser}
+						onRouteChange={this.onRouteChange}
+					/>
 				)}
 			</div>
 		);
